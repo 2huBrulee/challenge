@@ -6,6 +6,8 @@ import schema from "./schema";
 import resolvers from "./resolvers";
 import models, { sequelize } from "./models";
 
+const port = process.env.PORT || 8000;
+
 const app = express();
 app.use(cors());
 const server = new ApolloServer({
@@ -24,7 +26,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
     seedDB();
   }
-  app.listen({ port: 8000 }, () => {
+  app.listen({ port }, () => {
     console.log("Apollo Server on http://localhost:8000/graphql");
   });
 });
