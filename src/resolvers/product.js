@@ -7,12 +7,4 @@ export default {
         return await models.Product.findByPk(id);
       },
     },
-  /*
-    Product: {
-      messages: (user, args, { models }) => {
-        return Object.values(models.messages).filter(
-          message => message.userId === user.id,
-        );
-      },
-    },*/
   };
