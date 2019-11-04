@@ -1,13 +1,31 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize(process.env.JAWSDB_URL,
-    {
-        dialect: 'mysql',
-        define:{
-            underscored: false,
-        }
-    },
-);
+let sequelize;
+
+if(process.env.JAWSDB_URL){
+    sequelize = new Sequelize(process.env.JAWSDB_URL,
+        {
+            dialect: 'mysql',
+            define:{
+                underscored: false,
+            }
+        },
+    );
+}else{
+    sequelize = new Sequelize(
+        process.env.DATABASE,
+        process.env.DATABASE_USER,
+        process.env.DATABASE_PASSWORD,
+        {
+            dialect: 'mysql',
+            define:{
+                underscored: false,
+            }
+        },
+    );
+}
+
+ 
 
 const models = {
     Product: sequelize.import('./product.js'),
